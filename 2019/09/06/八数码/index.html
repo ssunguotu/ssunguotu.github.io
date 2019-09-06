@@ -8,23 +8,23 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>八数码 | 孙国兔的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这里是关于暑期课设作业”八数码难题”的笔记，解析了如何判断是否有解，并介绍了深搜广搜和启发式搜索在此题中的应用。 八数码问题[TOC] 问题描述:    问题分析:是否有解?对于一个问题，我们首先应该考虑其是否有解，这样才能避免陷入始终搜索不到解的死循环中。 经查阅资料知，我们可以通过分析初始状态和目标状态，这两个有序数列的逆序值来判断。如果两者都是偶数或奇数，则可通过变换到达，否则，这两个状态不">
+  <meta name="description" content="这里是关于暑期课设作业”八数码难题”的笔记，解析了如何判断是否有解，并介绍了深搜广搜和启发式搜索在此题中的应用。">
 <meta name="keywords" content="数据结构,算法题,A*搜索">
 <meta property="og:type" content="article">
 <meta property="og:title" content="八数码">
 <meta property="og:url" content="http://yoursite.com/2019/09/06/八数码/index.html">
 <meta property="og:site_name" content="孙国兔的博客">
-<meta property="og:description" content="这里是关于暑期课设作业”八数码难题”的笔记，解析了如何判断是否有解，并介绍了深搜广搜和启发式搜索在此题中的应用。 八数码问题[TOC] 问题描述:    问题分析:是否有解?对于一个问题，我们首先应该考虑其是否有解，这样才能避免陷入始终搜索不到解的死循环中。 经查阅资料知，我们可以通过分析初始状态和目标状态，这两个有序数列的逆序值来判断。如果两者都是偶数或奇数，则可通过变换到达，否则，这两个状态不">
+<meta property="og:description" content="这里是关于暑期课设作业”八数码难题”的笔记，解析了如何判断是否有解，并介绍了深搜广搜和启发式搜索在此题中的应用。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://pxey61l37.bkt.clouddn.com/win/20190906/uJ0V3H5griKs.png?imageslim">
 <meta property="og:image" content="http://pxey61l37.bkt.clouddn.com/win/20190906/W7eODnL4ES5U.png?imageslim">
 <meta property="og:image" content="http://pxey61l37.bkt.clouddn.com/win/20190906/gAf5iWzA7pdQ.png?imageslim">
 <meta property="og:image" content="http://pxey61l37.bkt.clouddn.com/win/20190906/YdcC9NBcpp38.png?imageslim">
 <meta property="og:image" content="http://pxey61l37.bkt.clouddn.com/win/20190906/fNrjE30EPXx5.png?imageslim">
-<meta property="og:updated_time" content="2019-09-06T14:35:18.370Z">
+<meta property="og:updated_time" content="2019-09-06T14:39:26.720Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="八数码">
-<meta name="twitter:description" content="这里是关于暑期课设作业”八数码难题”的笔记，解析了如何判断是否有解，并介绍了深搜广搜和启发式搜索在此题中的应用。 八数码问题[TOC] 问题描述:    问题分析:是否有解?对于一个问题，我们首先应该考虑其是否有解，这样才能避免陷入始终搜索不到解的死循环中。 经查阅资料知，我们可以通过分析初始状态和目标状态，这两个有序数列的逆序值来判断。如果两者都是偶数或奇数，则可通过变换到达，否则，这两个状态不">
+<meta name="twitter:description" content="这里是关于暑期课设作业”八数码难题”的笔记，解析了如何判断是否有解，并介绍了深搜广搜和启发式搜索在此题中的应用。">
 <meta name="twitter:image" content="http://pxey61l37.bkt.clouddn.com/win/20190906/uJ0V3H5griKs.png?imageslim">
   
     <link rel="alternative" href="/atom.xml" title="孙国兔的博客" type="application/atom+xml">
@@ -182,7 +182,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>这里是关于暑期课设作业”八数码难题”的笔记，解析了如何判断是否有解，并介绍了深搜广搜和启发式搜索在此题中的应用。</p>
-<h1 id="八数码问题"><a href="#八数码问题" class="headerlink" title="八数码问题"></a>八数码问题</h1><p>[TOC]</p>
+<a id="more"></a>
+
+<h1 id="八数码难题"><a href="#八数码难题" class="headerlink" title="八数码难题"></a>八数码难题</h1><p>[TOC]</p>
 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述:"></a>问题描述:</h2><p><img src="http://pxey61l37.bkt.clouddn.com/win/20190906/uJ0V3H5griKs.png?imageslim" alt="mark"></p>
 <p><img src="http://pxey61l37.bkt.clouddn.com/win/20190906/W7eODnL4ES5U.png?imageslim" alt="mark"></p>
 <p><img src="http://pxey61l37.bkt.clouddn.com/win/20190906/gAf5iWzA7pdQ.png?imageslim" alt="mark"></p>
