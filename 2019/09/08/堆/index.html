@@ -6,15 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: hexo生成错误 | 孙国兔的博客</title>
+  <title>堆 | 孙国兔的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="孙国兔的博客">
-<meta property="og:url" content="http://yoursite.com/tags/hexo生成错误/index.html">
+  <meta name="description" content="这里是堆的定义及实现，堆天生就是优先级队列。">
+<meta name="keywords" content="&lt;数据结构&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="堆">
+<meta property="og:url" content="http://yoursite.com/2019/09/08/堆/index.html">
 <meta property="og:site_name" content="孙国兔的博客">
+<meta property="og:description" content="这里是堆的定义及实现，堆天生就是优先级队列。">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http://pxey61l37.bkt.clouddn.com/win/20190908/jXbWKFLIJGMh.png?imageslim">
+<meta property="og:image" content="http://pxey61l37.bkt.clouddn.com/win/20190908/26VJty1OvP9a.png?imageslim">
+<meta property="og:image" content="http://pxey61l37.bkt.clouddn.com/win/20190908/hIOViidQu8RB.png?imageslim">
+<meta property="og:image" content="http://pxey61l37.bkt.clouddn.com/win/20190908/k0hvcMoxBrKF.png?imageslim">
+<meta property="og:updated_time" content="2019-09-08T12:39:17.896Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="孙国兔的博客">
+<meta name="twitter:title" content="堆">
+<meta name="twitter:description" content="这里是堆的定义及实现，堆天生就是优先级队列。">
+<meta name="twitter:image" content="http://pxey61l37.bkt.clouddn.com/win/20190908/jXbWKFLIJGMh.png?imageslim">
   
     <link rel="alternative" href="/atom.xml" title="孙国兔的博客" type="application/atom+xml">
   
@@ -148,60 +158,219 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-堆" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/12/生成generate常见错误/" class="archive-article-date">
-  	<time datetime="2019-08-12T03:40:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/12/生成generate常见错误/">hexo generate常见错误</a>
+    <h1 class="article-title" itemprop="name">
+      堆
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/09/08/堆/" class="archive-article-date">
+  	<time datetime="2019-09-08T12:34:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这里是堆的定义及实现，堆天生就是优先级队列。</p>
+<a id="more"></a>
+
+
+
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>堆是一种特殊的树。</p>
+<ul>
+<li>堆是一个完全二叉树；</li>
+<li>堆中每一个节点的值都必须大于等于（或小于等于）其子树中每个节点的值。</li>
+</ul>
+<p>对于每个节点的值都大于等于子树中每个节点值的堆，我们叫作“<strong>大顶堆</strong>”。对于每个节点的值都小于等于子树中每个节点值的堆，我们叫作“<strong>小顶堆</strong>”。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>要实现一个堆，我们先要知道，堆都支持哪些操作以及如何存储一个堆。</p>
+<h3 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h3><p>完全二叉树比较适合用数组来存储，因为其可以把数组“填满”的特性，用数组来存储完全二叉树相对于链式结构来说是非常节省存储空间的。因为我们不需要存储左右子节点的指针，单纯地通过数组的下标，就可以找到一个节点的左右子节点和父节点。</p>
+<p><img src="http://pxey61l37.bkt.clouddn.com/win/20190908/jXbWKFLIJGMh.png?imageslim" alt="mark"></p>
+<p>从图中我们可以看到，数组中下标为$i$的节点的左子节点，就是下标为$i<em>2$的节点，右子节点就是下标为$i</em>2+1$的节点，父节点就是下标为$\frac{i}{2}$的节点。</p>
+<p>注意，<strong>根节点的下标为1而不是0</strong>，这是为了方便取左右子节点的计算。</p>
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><h4 id="1-void-push-Node-入栈"><a href="#1-void-push-Node-入栈" class="headerlink" title="1.void push(Node) 入栈"></a>1.void push(Node) 入栈</h4><p>往堆中插入一个元素后，我们需要继续满足堆的两个特性。如果我们把新插入的元素放到堆的最后，可以看这个图，是不是不符合堆的特性了？于是，我们就需要进行调整，让其重新满足堆的特性，这个过程我们起了一个名字，就叫作<strong>堆化（heapify）</strong>。</p>
+<p>堆化的实质，就是<strong>顺着节点所在的路径，向上或者向下，对比，然后交换。</strong></p>
+<p>堆化实际上有两种，从下往上和从上往下。</p>
+<p>先看从下往上： </p>
+<blockquote>
+<p>我们可以让新插入的节点与父节点对比大小。如果不满足子节点小于等于父节点的大小关系，我们就互换两个节点。一直重复这个过程，直到父子节点之间满足刚说的那种大小关系。</p>
+</blockquote>
+<p><img src="http://pxey61l37.bkt.clouddn.com/win/20190908/26VJty1OvP9a.png?imageslim" alt="mark"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (i/<span class="number">2</span> &gt; <span class="number">0</span> &amp;&amp; a[i] &gt; a[i/<span class="number">2</span>]) &#123; <span class="comment">// 自下往上堆化</span></span><br><span class="line">	swap(a, i, i/<span class="number">2</span>); <span class="comment">// swap()函数作用：交换下标为i和i/2的两个元素</span></span><br><span class="line"> 	i = i/<span class="number">2</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-Node-getTop-得到栈顶元素并将其删除"><a href="#2-Node-getTop-得到栈顶元素并将其删除" class="headerlink" title="2.Node getTop() 得到栈顶元素并将其删除"></a>2.Node getTop() 得到栈顶元素并将其删除</h4><p>堆的任何节点的值都大于等于（或小于等于）子树节点的值，我们可以发现，堆顶元素存储的就是堆中数据的<strong>最大值</strong>或者<strong>最小值</strong>。</p>
+<p>而且我们知道，当删除堆顶后，剩余元素的最大或最小值一定是在堆顶的左右子节点中。</p>
+<p>那么我们比较易想到的方法是，删除当前堆顶，从左右子节点中选取较大值放到堆顶，然后继续迭代下去直到叶节点。</p>
+<p>不过这种方法有点问题，就是最后堆化出来的堆并不满足完全二叉树的特性。</p>
+<p><img src="http://pxey61l37.bkt.clouddn.com/win/20190908/hIOViidQu8RB.png?imageslim" alt="mark"></p>
+<p>实际上，我们稍微改变一下思路，就可以解决这个问题：</p>
+<blockquote>
+<p>把最后一个节点放到堆顶，然后利用同样的父子节点对比方法。对于不满足父子节点大小关系的，互换两个节点，并且重复进行这个过程，直到父子节点之间满足大小关系为止。这就是<strong>从上往下</strong>的堆化方法。</p>
+<p>需要注意的是，我们做交换是左子，右子两个节点中选择最适合当父节点的节点，与父节点做交换。这是为了保证交换后仍满足堆的性质。</p>
+</blockquote>
+<p><img src="http://pxey61l37.bkt.clouddn.com/win/20190908/k0hvcMoxBrKF.png?imageslim" alt="mark"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeMax</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (count == <span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>; <span class="comment">// 堆中没有数据</span></span><br><span class="line"> 	a[<span class="number">1</span>] = a[count];</span><br><span class="line"> 	--count;</span><br><span class="line"> 	heapify(a, count, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">heapify</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n, <span class="keyword">int</span> i)</span> </span>&#123; <span class="comment">// 自上往下堆化</span></span><br><span class="line"> 	<span class="keyword">while</span> (<span class="keyword">true</span>) &#123; <span class="comment">//把堆顶设为max,然后往下判断,若确实是max则break;否则做交换。</span></span><br><span class="line">	<span class="keyword">int</span> maxPos = i;</span><br><span class="line"> 	<span class="keyword">if</span> (i*<span class="number">2</span> &lt;= n &amp;&amp; a[i] &lt; a[i*<span class="number">2</span>]) maxPos = i*<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">if</span> (i*<span class="number">2</span>+<span class="number">1</span> &lt;= n &amp;&amp; a[maxPos] &lt; a[i*<span class="number">2</span>+<span class="number">1</span>]) maxPos = i*<span class="number">2</span>+<span class="number">1</span>;</span><br><span class="line"> 	<span class="keyword">if</span> (maxPos == i) <span class="keyword">break</span>;</span><br><span class="line">	swap(a, i, maxPos);</span><br><span class="line">	i = maxPos;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在自己实现时，对于堆化为什么要左右子树都与当前节点做判断，且左右节点有了疑问。</p>
+<h4 id="3-bool-empty-判断栈是否空"><a href="#3-bool-empty-判断栈是否空" class="headerlink" title="3.bool empty() 判断栈是否空"></a>3.bool empty() 判断栈是否空</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(count == <span class="number">0</span>) <span class="comment">//cnt为当前队列中的元素个数</span></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">hexo生成错误</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2"><数据结构></a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/08/堆/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/09/08/散列表/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">散列表</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义"><span class="toc-number">1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现"><span class="toc-number">2.</span> <span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#存储"><span class="toc-number">2.1.</span> <span class="toc-text">存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#操作"><span class="toc-number">2.2.</span> <span class="toc-text">操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-void-push-Node-入栈"><span class="toc-number">2.2.1.</span> <span class="toc-text">1.void push(Node) 入栈</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Node-getTop-得到栈顶元素并将其删除"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.Node getTop() 得到栈顶元素并将其删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-bool-empty-判断栈是否空"><span class="toc-number">2.2.3.</span> <span class="toc-text">3.bool empty() 判断栈是否空</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -224,9 +393,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
